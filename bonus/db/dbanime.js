@@ -36,3 +36,4 @@ const animeList = [
     }
   ];
   
+  module.exports = animeList

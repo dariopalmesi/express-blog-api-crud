@@ -107,7 +107,7 @@ const destroy = (req, res) => {
 
     res.status(200).json({
         status: 200,
-        data: posts
+        data: newPost
     })
 
 }
