@@ -1,4 +1,4 @@
-const { title } = require('process')
+
 const animeList = require('../db/dbanime.js')
 const fs = require('fs')
 
