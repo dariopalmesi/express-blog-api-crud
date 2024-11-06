@@ -1,5 +1,4 @@
 const posts = require('../db/db.js')
-const db = require('../db/db.js')
 const fs = require('fs')
 
 
@@ -45,6 +44,7 @@ const show = (req, res) => {
 
 }
 
+
 const store = (req, res) => {
 
 
@@ -69,42 +69,55 @@ const store = (req, res) => {
 }
 
 const update = (req, res) => {
-    const slug = req.params.slug
     const post = posts.find(post => post.slug === req.params.slug)
-    
+
     if (!post) {
         return res.status(404).json({
-            erroe: `404! Not found`
+            error: `404! Not found`
         })
     }
 
-     const postUpdate = {
-         ...post,
-         title: req.body.title || post.title,
-         slug: req.body.slug || post.slug,
-         content: req.body.content || post.content,
-         image: req.body.image || post.image,
-         tags: req.body.tags || post.tags
-     }
+    post.title = req.body.title;
+    post.slug = req.body.slug;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags
 
-     const postIndex = posts.findIndex(post => post.slug === slug) 
+    fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
 
-     posts[postIndex] = postUpdate
-
-     fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
-
-     return res.json({
+    res.status(200).json({
         status: 200,
-        data: postUpdate,
-        
+        data: posts
     })
 
 }
+
+const destroy = (req, res) => {
+    const post = posts.find(post => post.slug === req.params.slug)
+
+    if (!post) {
+        return res.status(404).json({
+            error: `404! Not found`
+        })
+    }
+
+    const newPost = posts.filter((post) => post.slug !== req.params.slug)
+
+    fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
+
+    res.status(200).json({
+        status: 200,
+        data: posts
+    })
+
+}
+
 
 
 module.exports = {
     index,
     show,
     store,
-    update
+    update,
+    destroy
 }

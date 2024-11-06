@@ -11,4 +11,6 @@ router.get('/', postsController.index)
 
  router.put('/:slug', postsController.update)
 
+ router.delete('/:slug', postsController.destroy)
+
 module.exports = router
