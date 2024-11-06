@@ -1,6 +1,6 @@
 const express = require('express') 
 const app = express()
-const anime = require('./db/dbanime.js')
+const AnimeRoutes = require('./routes/AnimeRoutes.js')
 
 
 
@@ -16,10 +16,6 @@ app.get('/', (req, res) => {
     res.send('Blog anime')
 })
 
-app.get('/anime', (req, res) => {
-    res.json({
-        data: anime,
-        counter: anime.length
-    })
-})
+app.use('/anime', AnimeRoutes)
 
+app.use(express.json())
