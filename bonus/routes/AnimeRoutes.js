@@ -9,4 +9,6 @@ router.get('/:id', AnimeController.show)
 
 router.post('/', AnimeController.store)
 
+router.put('/:id', AnimeController.update)
+
 module.exports = router
