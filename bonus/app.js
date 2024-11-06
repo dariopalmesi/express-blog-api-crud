@@ -12,4 +12,14 @@ app.listen(3001, () => {
     
 })
 
+app.get('/', (req, res) => {
+    res.send('Blog anime')
+})
+
+app.get('/anime', (req, res) => {
+    res.json({
+        data: anime,
+        counter: anime.length
+    })
+})
 

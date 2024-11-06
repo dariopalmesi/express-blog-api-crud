@@ -103,7 +103,7 @@ const destroy = (req, res) => {
 
     const newPost = posts.filter((post) => post.slug !== req.params.slug)
 
-    fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
+    fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(newPost, null, 4)}`)
 
     res.status(200).json({
         status: 200,
