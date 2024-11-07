@@ -44,7 +44,7 @@ const store = (req, res) => {
 }
 
 const update = (req, res) => {
-    const anime  = anime.find((anime) => anime.id === Number(req.params.id));
+    const anime  = animeList.find((anime) => anime.id === Number(req.params.id));
     if (!anime) {
         return res.status(404).json({
             error: '404! not found anime id'

@@ -1,7 +1,7 @@
 const express = require('express') 
 const app = express()
 const AnimeRoutes = require('./routes/AnimeRoutes.js')
-
+app.use(express.json())
 
 
 const PORT = process.env.PORT
@@ -19,4 +19,3 @@ app.get('/', (req, res) => {
 
 app.use('/anime', AnimeRoutes)
 
-app.use(express.json())
