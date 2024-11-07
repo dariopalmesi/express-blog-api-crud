@@ -1,11 +1,10 @@
 const loggerMiddleware = (req, res, next) => {
-    const now = new Date().toString();
+    const now = new Date().toString()
     console.error(`
-        Date: ${now}
-        Method: ${req.method}
-        URL: ${req.url}
+       Date: ${now}
+       Method: ${req.method}
+       URL: ${req.url} 
         `)
-
 
     next()
 }
