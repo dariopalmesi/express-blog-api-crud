@@ -11,4 +11,6 @@ router.post('/', AnimeController.store)
 
 router.put('/:id', AnimeController.update)
 
+router.delete('/:id', AnimeController.destroy)
+
 module.exports = router
